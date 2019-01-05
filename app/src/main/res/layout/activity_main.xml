@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.can.image.loadingeffect.MainActivity"
+    android:background="#000000">
+
+    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+        android:id="@+id/iv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"/>
+
+    <com.can.image.widget.CircleProgressView
+        android:id="@+id/cpv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:progress="0"
+        app:cpv_innerPadding="0dp"
+        app:cpv_outerColor="#ffffff"
+        app:cpv_outerSize="1dp"
+        app:cpv_progressNormalColor="#00000000"
+        app:cpv_progressReachColor="#ffffff"
+        app:cpv_progressStyle="FillInnerArc"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        tools:visibility="visible"
+        />
+</RelativeLayout>
