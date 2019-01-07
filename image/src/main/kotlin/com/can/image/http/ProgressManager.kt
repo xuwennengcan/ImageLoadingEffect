@@ -15,10 +15,24 @@ import okhttp3.OkHttpClient
  * 图片下载进度网络监听
  */
 
-class ProgressManager {
+class ProgressManager{
 
-    private val listenersMap = Collections.synchronizedMap(HashMap<String, OnProgressListener>())
-    private var okHttpClient: OkHttpClient? = null
+    companion object {
+        private var instance : ProgressManager?=null
+        get() {
+            if(field==null){
+                field = ProgressManager()
+            }
+            return field
+        }
+        @Synchronized
+        fun get() : ProgressManager{
+            return instance!!
+        }
+
+        private var listenersMap = Collections.synchronizedMap(HashMap<String, OnProgressListener>())
+        private var okHttpClient: OkHttpClient? = null
+    }
 
     private val mProgressListener = object : InternalProgressListener {
         override fun onProgress(url: String, bytesRead: Long, totalBytes: Long) {
@@ -77,4 +91,5 @@ class ProgressManager {
             listenersMap[url]
         }
     }
+
 }

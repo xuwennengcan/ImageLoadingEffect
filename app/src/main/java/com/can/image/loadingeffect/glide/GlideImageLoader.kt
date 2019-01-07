@@ -1,14 +1,10 @@
-@file:Suppress("DEPRECATION")
-
 package com.can.image.loadingeffect.glide
 
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.support.annotation.DrawableRes
-import com.bumptech.glide.Glide
 import com.bumptech.glide.load.Transformation
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.can.image.`interface`.OnProgressListener
@@ -33,7 +29,13 @@ class GlideImageLoader<T> constructor(imageView: SubsamplingScaleImageView) {
 
     init {
         imageViewWeakReference = WeakReference(imageView)
-        glideRequest = GlideApp.with(getView()!!.context).asFile() as GlideRequest<T>
+    }
+
+    fun getGlideRequest(): GlideRequest<T> {
+        if (glideRequest == null) {
+            glideRequest = GlideApp.with(getView()!!.context).asFile() as GlideRequest<T>
+        }
+        return glideRequest!!
     }
 
     private fun getView(): SubsamplingScaleImageView? {
@@ -46,42 +48,20 @@ class GlideImageLoader<T> constructor(imageView: SubsamplingScaleImageView) {
         return if (url.isNullOrEmpty()) "" else url.toString()
     }
 
-    private fun loadImage(obj: Any): GlideRequest<T>? {
-        if (obj is String) {
-            url = obj
-        }
-        return glideRequest!!.load(obj)
-    }
-
-    fun load(obj: Any, @DrawableRes placeholder: Int, transformation: Transformation<Bitmap>?) : GlideImageLoader<T> {
-        loadImage(obj, placeholder, transformation)
-        return this
-    }
-
-    fun load(url: String, @DrawableRes placeholder: Int, onProgressListener: OnProgressListener) {
-        listener(url,onProgressListener).loadImage(url,placeholder,null)
-    }
-
-    private fun loadImage(obj: Any, @DrawableRes placeholder: Int, transformation: Transformation<Bitmap>?): GlideImageLoader<T> {
-        glideRequest = loadImage(obj)
+    fun loadImage(obj: Any, @DrawableRes placeholder: Int,onProgressListener: OnProgressListener?): GlideImageLoader<T> {
         if (placeholder != 0) {
-            glideRequest = glideRequest!!.placeholder(placeholder)
+            glideRequest = getGlideRequest().placeholder(placeholder)
         }
 
-        if (transformation != null) {
-            glideRequest = glideRequest!!.transform(transformation)
+        if(onProgressListener!=null){
+            if (obj is String) {
+                url = obj
+                ProgressManager().addListener(url as String, onProgressListener)
+            }
         }
 
         if (getView() != null)
-            glideRequest!!.into(GlideImageViewTarget(getView()!!))
-        return this
-    }
-
-    private fun listener(obj: Any, onProgressListener: OnProgressListener): GlideImageLoader<T> {
-        if (obj is String) {
-            url = obj
-            ProgressManager().addListener(url as String, onProgressListener)
-        }
+            getGlideRequest().load(obj).into(GlideImageViewTarget(getView()!!))
         return this
     }
 

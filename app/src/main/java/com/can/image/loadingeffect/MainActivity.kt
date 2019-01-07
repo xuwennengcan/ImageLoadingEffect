@@ -33,8 +33,8 @@ class MainActivity : AppCompatActivity() {
         mCpv = findViewById(R.id.cpv)
 
         val imageLoader = GlideImageLoader<File>(mIv!!)
-
-        imageLoader.load(image,0,object :OnProgressListener{
+        imageLoader.getGlideRequest().apply(options)
+        imageLoader.loadImage(image,0,object :OnProgressListener{
             override fun onProgress(isComplete: Boolean, percentage: Int, bytesRead: Long, totalBytes: Long) {
                 super.onProgress(isComplete, percentage, bytesRead, totalBytes)
                 mCpv!!.progress = percentage
