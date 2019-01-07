@@ -48,9 +48,9 @@ class GlideImageLoader<T> constructor(imageView: SubsamplingScaleImageView) {
         return if (url.isNullOrEmpty()) "" else url.toString()
     }
 
-    fun loadImage(obj: Any, @DrawableRes placeholder: Int,onProgressListener: OnProgressListener?): GlideImageLoader<T> {
+    fun loadImage(obj: Any, @DrawableRes placeholder: Int?,onProgressListener: OnProgressListener?): GlideImageLoader<T> {
         if (placeholder != 0) {
-            glideRequest = getGlideRequest().placeholder(placeholder)
+            glideRequest = getGlideRequest().placeholder(placeholder!!)
         }
 
         if(onProgressListener!=null){

@@ -8,7 +8,7 @@ import android.view.View
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.can.image.`interface`.OnProgressListener
-import com.can.image.glide.GlideApp
+import com.can.image.glide.GlideRequest
 import com.can.image.loadingeffect.glide.GlideImageLoader
 import com.can.image.widget.CircleProgressView
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
