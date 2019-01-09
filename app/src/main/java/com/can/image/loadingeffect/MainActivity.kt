@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private var mIv : SubsamplingScaleImageView ? = null
     private var mCpv : CircleProgressView ? = null
     private val mImageUrl = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1546680464160&di=e95726d0e3325cb98f72585e91b82b46&imgtype=0&src=http%3A%2F%2Fwx3.sinaimg.cn%2Forj360%2Fa2ee95c9gy1flcvtcsybsj20fp4umwqx.jpg"
-    private val image = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1546680464160&di=e320a1c0f88aad70a88dff9d84cc785f&imgtype=0&src=http%3A%2F%2Fwx1.sinaimg.cn%2Forj360%2F66dc402ely1fv7ztsb871j20u046ohdt.jpg"
+    private val image = "https://static.dingtalk.com/media/lADPDgQ9qb7pRqvNC9DND8A_4032_3024.jpg?auth_bizType=IM&auth_bizEntity=%7B%22cid%22%3A%224248001%3A284146280%22%2C%22msgId%22%3A%22769665707059%22%7D&open_id=284146280"
 
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         mCpv = findViewById(R.id.cpv)
 
         val imageLoader = GlideImageLoader<File>(mIv!!)
-        imageLoader.getGlideRequest().apply(options)
+        //imageLoader.getGlideRequest().apply(options)
         imageLoader.loadImage(image,0,object :OnProgressListener{
             override fun onProgress(isComplete: Boolean, percentage: Int, bytesRead: Long, totalBytes: Long) {
                 super.onProgress(isComplete, percentage, bytesRead, totalBytes)
