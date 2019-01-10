@@ -2,13 +2,10 @@ package com.can.image.http
 
 import android.text.TextUtils
 import android.util.Log
-import com.can.image.`interface`.InternalProgressListener
-import com.can.image.`interface`.OnProgressListener
-
-import java.util.Collections
-import java.util.HashMap
-
+import com.can.image.inter.InternalProgressListener
+import com.can.image.inter.OnProgressListener
 import okhttp3.OkHttpClient
+import java.util.*
 
 /**
  * Created by CAN on 19-1-5.

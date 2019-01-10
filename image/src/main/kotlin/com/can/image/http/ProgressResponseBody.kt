@@ -2,7 +2,7 @@ package com.can.image.http
 
 import android.os.Handler
 import android.os.Looper
-import com.can.image.`interface`.InternalProgressListener
+import com.can.image.inter.InternalProgressListener
 import okhttp3.MediaType
 import okhttp3.ResponseBody
 import okio.*
